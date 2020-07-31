@@ -30,3 +30,30 @@ Steps taken to create this template:
     to this folder.
 6.  Modify the install\_packages.R script to suit the specific project
     requirements.
+7.  Launch a container with the specific R version that you want and
+    with the project folder mounted, using the following command (Be
+    sure to replace the path on the left side of :
+    (`~/repos/docker-renv-example/`) with the path to the project folder
+    on your machine):
+
+`docker run -it -e DISABLE_AUTH=true -v
+~/repos/rproj-template/:/home/rstudio/project rocker/verse:4.0.0 bash`
+
+8.  This will open a bash shell within the container. Navigate to the
+    mounted project folder within the container:
+
+`cd home/rstudio/project`
+
+9.  Run the install\_packages.R script within the container (this may
+    take a while depending on the number of packages that are installed
+    from source):
+
+`Rscript install_packages.R`
+
+10. Exit the container with using `exit`. The `install_packages.R`
+    script has generated the following files and directories:
+      - renv.lock
+      - .Rprofile (modified if it already existed)
+      - renv/activate.R
+      - Various other files in renv/ that should not be commited
+11. Commit the renv files above.
