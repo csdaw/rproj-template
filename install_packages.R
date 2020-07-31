@@ -52,5 +52,7 @@ github_packages <- c("csdaw/ggprism")
 remotes::install_github(github_packages)
 
 ### Take snapshot ###
-
 renv::snapshot(type = "simple")
+
+### Isolate packages into project folder ###
+renv::isolate()
