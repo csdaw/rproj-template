@@ -57,3 +57,15 @@ Steps taken to create this template:
       - renv/activate.R
       - Various other files in renv/ that should not be commited
 11. Commit the renv files above.
+12. If you need to adjust your analysis at this stage (or any stage up
+    until step x) you can do the following:
+      - Run `renv::deactivate()` in your project folder. This will
+        modify (or delete) the .Rprofile file.
+      - Then you can change your analysis however you like without renv
+        complaining.
+      - If you need to install extra packages you’ll have to repeat
+        steps 7-11.
+      - Once you’ve made any modifications, simply run
+        `renv::activate()` to return the .Rprofile back to where it was.
+13. Otherwise, copy the Makefile from
+    [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
