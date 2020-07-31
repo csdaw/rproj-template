@@ -28,3 +28,5 @@ Steps taken to create this template:
 5.  Copy the `Dockerfile`, `install_packages.R` and `renv_restore` from
     [docker-renv-example](https://github.com/joelnitta/docker-renv-example)
     to this folder.
+6.  Modify the install\_packages.R script to suit the specific project
+    requirements.
