@@ -12,11 +12,11 @@ else
 endif
 
 ifeq ($(DOCKER),TRUE)
-	run:= docker run --rm --user $(uid) -v $(current_dir):/home/rstudio $(projekt)
-	current_dir=/home/rstudio
+	run:= docker run --rm --user $(uid) -v $(current_dir):/home/$(projekt) $(projekt)
+	current_dir=/home/$(projekt)
 endif
 
-all: manuscript.pdf README.md
+all: analysis.pdf README.md
 
 build: Dockerfile
 	docker build -t $(projekt) .
@@ -24,11 +24,8 @@ build: Dockerfile
 rebuild:
 	docker build --no-cache -t $(projekt) .
 
-README.md: README.Rmd abstract.Rmd
+README.md: README.Rmd
 	$(run) Rscript -e 'rmarkdown::render("$(current_dir)/$<")'
 
-manuscript.pdf: manuscript.Rmd data/CFCS.csv
+analysis.pdf: analysis.Rmd
 	$(run) Rscript -e 'rmarkdown::render("$(current_dir)/$<")'
-
-data/CFCS.csv: R/prepare_data.R
-	$(run) Rscript -e 'source("$(current_dir)/$<")'

@@ -34,7 +34,7 @@ folder.
    (`~/repos/docker-renv-example/`) with the path to the project folder on your 
    machine):
    
-```docker run -it -e DISABLE_AUTH=true -v ~/repos/rproj-template/:/home/rstudio/project rocker/verse:4.0.0 bash```
+```docker run -it -e DISABLE_AUTH=true -v ~/repos/rproj-template/:/home/rstudio/rproj-template rocker/verse:4.0.0 bash```
 
 8. This will open a bash shell within the container. Navigate to the mounted 
    project folder within the container:
@@ -64,3 +64,6 @@ folder.
     return the .Rprofile back to where it was.
 13. Otherwise, copy the Makefile from 
     [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
+14. Modify the copied Makefile and Dockerfile to suit the specific project parameters.
+    Remember the R version in the Dockerfile **must** match the R version in the
+    container used to run `install_packages.R`.
