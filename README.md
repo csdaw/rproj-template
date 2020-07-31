@@ -25,3 +25,6 @@ Steps taken to create this template:
 4.  Develop your analyses. In this case there is just a single
     representative Rmarkdown document which knits to pdf and produces 2
     figures.
+5.  Copy the `Dockerfile`, `install_packages.R` and `renv_restore` from
+    [docker-renv-example](https://github.com/joelnitta/docker-renv-example)
+    to this folder.
