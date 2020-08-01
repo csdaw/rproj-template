@@ -1,14 +1,14 @@
 # Only run this after making renv.lock by
 # running install_packages.R
 
-FROM rocker/verse:4.0.0
+FROM csdaw/rmarkdown-tinytex:4.0.2
 
 RUN apt-get update
 
-RUN mkdir rproj-template
+RUN mkdir /home/rproj-template
 
-COPY . ./rproj-template
+COPY . /home/rproj-template
 
-WORKDIR /rproj-template
+WORKDIR /home/rproj-template
 
 RUN Rscript renv_restore.R

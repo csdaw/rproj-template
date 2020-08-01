@@ -40,7 +40,7 @@ options(repos = my_repos)
 
 # Install CRAN packages
 # Can use remotes::install_version to install a specific version
-cran_packages <- c("ggplot2")
+cran_packages <- c("ggplot2", "rmarkdown", "tinytex")
 install.packages(cran_packages)
 
 # Install bioconductor packages

@@ -37,8 +37,7 @@ Steps taken to create this template:
     on your machine):
 
 `docker run -it -e DISABLE_AUTH=true -v
-~/repos/rproj-template/:/home/rstudio/rproj-template rocker/verse:4.0.0
-bash`
+~/repos/rproj-template/:/home/rproj-template rocker/r-ver:4.0.2 bash`
 
 8.  This will open a bash shell within the container. Navigate to the
     mounted project folder within the container:
@@ -74,3 +73,7 @@ bash`
     project parameters. Remember the R version in the Dockerfile
     **must** match the R version in the container used to run
     `install_packages.R`.
+15. Run the command `make build` to build the self-contained analysis
+    container.
+16. Run the command `make all DOCKER=TRUE` to perform the fake analysis
+    and output a pdf file with some figures.
