@@ -11,7 +11,8 @@ of Joel Nitta’s
 and Aaron Peikert’s reproducible research
 [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
 
-## Setup
+Setup
+-----
 
 Steps taken to create this template:
 
@@ -19,7 +20,7 @@ Steps taken to create this template:
     README, .gitignore (for R), and appropriate LICENSE.
 2.  In RStudio create a new project from a version control repository
     and paste the repo web URL (in this case
-    <https://github.com/csdaw/rproj-template.git>).
+    <a href="https://github.com/csdaw/rproj-template.git" class="uri">https://github.com/csdaw/rproj-template.git</a>).
 3.  Open this project folder with your local R installation or IDE, or
     even mount it to a containerised development environment.
 4.  Develop your analyses. In this case there is just a single
@@ -33,47 +34,49 @@ Steps taken to create this template:
 7.  Launch a container with the specific R version that you want and
     with the project folder mounted, using the following command (Be
     sure to replace the path on the left side of :
-    (`~/repos/docker-renv-example/`) with the path to the project folder
-    on your machine):
+    (`~/repos/rproj-template/`) with the path to the project folder on
+    your machine):
 
-`docker run -it -e DISABLE_AUTH=true -v
-~/repos/rproj-template/:/home/rproj-template rocker/r-ver:4.0.2 bash`
+`docker run -it -e DISABLE_AUTH=true -v ~/repos/rproj-template/:/home/rproj-template rocker/r-ver:4.0.2 bash`
 
-8.  This will open a bash shell within the container. Navigate to the
+1.  This will open a bash shell within the container. Navigate to the
     mounted project folder within the container:
 
-`cd home/rstudio/project`
+`cd home/rproj-template`
 
-9.  Run the install\_packages.R script within the container (this may
+1.  Run the install\_packages.R script within the container (this may
     take a while depending on the number of packages that are installed
     from source):
 
 `Rscript install_packages.R`
 
-10. Exit the container with using `exit`. The `install_packages.R`
+1.  Exit the container with using `exit`. The `install_packages.R`
     script has generated the following files and directories:
-      - renv.lock
-      - .Rprofile (modified if it already existed)
-      - renv/activate.R
-      - Various other files in renv/ that should not be commited
-11. Commit the renv files above.
-12. If you need to adjust your analysis at this stage (or any stage up
+    -   renv.lock
+    -   .Rprofile (modified if it already existed)
+    -   renv/activate.R
+    -   Various other files in renv/ that should not be commited
+2.  Commit the renv files above?
+3.  If you need to adjust your analysis at this stage (or any stage up
     until step x) you can do the following:
-      - Run `renv::deactivate()` in your project folder. This will
+    -   Run `renv::deactivate()` in your project folder. This will
         modify (or delete) the .Rprofile file.
-      - Then you can change your analysis however you like without renv
+    -   Then you can change your analysis however you like without renv
         complaining.
-      - If you need to install extra packages you’ll have to repeat
+    -   If you need to install extra packages you’ll have to repeat
         steps 7-11.
-      - Once you’ve made any modifications, simply run
+    -   Once you’ve made any modifications, simply run
         `renv::activate()` to return the .Rprofile back to where it was.
-13. Otherwise, copy the Makefile from
+4.  Otherwise, copy the Makefile from
     [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
-14. Modify the copied Makefile and Dockerfile to suit the specific
+5.  Modify the copied Makefile and Dockerfile to suit the specific
     project parameters. Remember the R version in the Dockerfile
     **must** match the R version in the container used to run
     `install_packages.R`.
-15. Run the command `make build` to build the self-contained analysis
+6.  Run the command `make build` to build the self-contained analysis
     container.
-16. Run the command `make all DOCKER=TRUE` to perform the fake analysis
-    and output a pdf file with some figures.
+7.  Run the command `make analysis` to perform the fake analysis within
+    the self-contained analysis container.
+8.  Run the command `make export` to export the results out of the
+    container and into the current directory.
+9.  Run the command `make clean` to remove the stopped container.

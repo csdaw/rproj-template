@@ -8,7 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,
-  fig.path = "figures/"
+  fig.path = "results/figures/"
   )
 ```
 
@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 A fake analysis which uses packages from CRAN (ggplot2), 
 Bioconductor (limma), and github (ggprism).
 
+### Load libraries
+
 ```{r}
 library(ggplot2)
 library(ggprism)
@@ -24,6 +26,8 @@ library(limma)
 
 set.seed(1)
 ```
+
+### Output figures
 
 Generate an MA plot.
 

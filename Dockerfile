@@ -5,10 +5,15 @@ FROM csdaw/rmarkdown-tinytex:4.0.2
 
 RUN apt-get update
 
-RUN mkdir /home/rproj-template
+# make a folder for the self-contained analysis
+RUN mkdir /home/analysis
 
-COPY . /home/rproj-template
+# copy all necessary files
+COPY . /home/analysis
 
-WORKDIR /home/rproj-template
+# set the correct working directory
+WORKDIR /home/analysis
 
+# restore the renv project to have access to the packages
+# required for knitting analysis.Rmd
 RUN Rscript renv_restore.R

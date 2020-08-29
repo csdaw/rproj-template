@@ -31,7 +31,7 @@ folder.
 7. Launch a container with the specific R version that you want and with 
    the project folder mounted, using the 
    following command (Be sure to replace the path on the left side of : 
-   (`~/repos/docker-renv-example/`) with the path to the project folder on your 
+   (`~/repos/rproj-template/`) with the path to the project folder on your 
    machine):
    
 ```docker run -it -e DISABLE_AUTH=true -v ~/repos/rproj-template/:/home/rproj-template rocker/r-ver:4.0.2 bash```
@@ -39,7 +39,7 @@ folder.
 8. This will open a bash shell within the container. Navigate to the mounted 
    project folder within the container:
    
-```cd home/rstudio/project```
+```cd home/rproj-template```
 
 9. Run the install_packages.R script within the container (this may take a 
    while depending on the number of packages that are installed from source):
@@ -52,7 +52,7 @@ folder.
     - .Rprofile (modified if it already existed)
     - renv/activate.R
     - Various other files in renv/ that should not be commited
-11. Commit the renv files above.
+11. Commit the renv files above?
 12. If you need to adjust your analysis at this stage (or any stage up until 
     step x) you can do the following: 
     - Run `renv::deactivate()` in your project folder. This will modify 
@@ -68,5 +68,8 @@ folder.
     Remember the R version in the Dockerfile **must** match the R version in the
     container used to run `install_packages.R`.
 15. Run the command `make build` to build the self-contained analysis container.
-16. Run the command `make all DOCKER=TRUE` to perform the fake analysis and 
-    output a pdf file with some figures.
+16. Run the command `make analysis` to perform the fake analysis within the
+    self-contained analysis container. 
+17. Run the command `make export` to export the results out of the container
+    and into the current directory.
+18. Run the command `make clean` to remove the stopped container.

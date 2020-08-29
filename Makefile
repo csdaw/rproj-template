@@ -1,31 +1,25 @@
-projekt := $(notdir $(CURDIR))
+project := $(notdir $(CURDIR))
+NAME ?= my_analysis
 
 ifeq ($(WINDOWS),TRUE)
 	# please mind the unusual way to specify the path
 	current_dir:=//c/Users/aaron/Documents/reproducible-research
-	home_dir:=$(current_dir)
-	uid:=
 else
 	current_dir := $(CURDIR)
-	home_dir := $(current_dir)
-	uid = $(shell id -u)
 endif
-
-ifeq ($(DOCKER),TRUE)
-	run:= docker run --rm --user $(uid) -v $(current_dir):/home/$(projekt) $(projekt)
-	current_dir=/home/$(projekt)
-endif
-
-all: analysis.pdf README.md
 
 build: Dockerfile
-	docker build -t $(projekt) .
+	docker build -t $(project) .
 
 rebuild:
-	docker build --no-cache -t $(projekt) .
+	docker build --no-cache -t $(project) .
 
-README.md: README.Rmd
-	$(run) Rscript -e 'rmarkdown::render("$(current_dir)/$<")'
+analysis:
+	docker run -dt --name=$(NAME) $(project) \
+		Rscript -e 'rmarkdown::render("/home/analysis/analysis.Rmd", output_dir = "results/")'
 
-analysis.pdf: analysis.Rmd
-	$(run) Rscript -e 'rmarkdown::render("$(current_dir)/$<")'
+export:
+	docker cp $(NAME):/home/analysis/results $(current_dir)
+
+clean:
+	docker rm $(NAME)
