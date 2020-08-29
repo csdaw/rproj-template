@@ -12,6 +12,14 @@ Joel Nitta's [docker-renv-example](https://github.com/joelnitta/docker-renv-exam
 and Aaron Peikert's reproducible research 
 [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
 
+## Use
+
+Requires `make` and `docker` only!
+
+1. Clone the repository
+2. Run `make all`
+3. Look at the PDF report in `results/`
+
 ## Setup
 
 Steps taken to create this template:
@@ -66,10 +74,6 @@ folder.
     [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
 14. Modify the copied Makefile and Dockerfile to suit the specific project parameters.
     Remember the R version in the Dockerfile **must** match the R version in the
-    container used to run `install_packages.R`.
-15. Run the command `make build` to build the self-contained analysis container.
-16. Run the command `make analysis` to perform the fake analysis within the
-    self-contained analysis container. 
-17. Run the command `make export` to export the results out of the container
-    and into the current directory.
-18. Run the command `make clean` to remove the stopped container.
+    container used to run `install_packages.R` (see commit history for full
+    changes).
+15. Simply run `make all`.

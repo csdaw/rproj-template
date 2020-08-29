@@ -11,6 +11,15 @@ of Joel Nitta’s
 and Aaron Peikert’s reproducible research
 [workflow-showcase](https://github.com/aaronpeikert/workflow-showcase/tree/41e7bc740a9956dea743160aac24e88165b3ec33).
 
+Use
+---
+
+Requires `make` and `docker` only!
+
+1.  Clone the repository
+2.  Run `make all`
+3.  Look at the PDF report in `results/`
+
 Setup
 -----
 
@@ -72,11 +81,5 @@ Steps taken to create this template:
 5.  Modify the copied Makefile and Dockerfile to suit the specific
     project parameters. Remember the R version in the Dockerfile
     **must** match the R version in the container used to run
-    `install_packages.R`.
-6.  Run the command `make build` to build the self-contained analysis
-    container.
-7.  Run the command `make analysis` to perform the fake analysis within
-    the self-contained analysis container.
-8.  Run the command `make export` to export the results out of the
-    container and into the current directory.
-9.  Run the command `make clean` to remove the stopped container.
+    `install_packages.R` (see commit history for full changes).
+6.  Simply run `make all`.
