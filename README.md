@@ -1,13 +1,13 @@
 rproj-template
 ================
 
-Template for my own reproducible R projects, which constructs a
-self-contained docker image using `renv`, `make`, and `docker`.
-Ultimately, only `docker` (and optionally `make`) is required to
-reproduce the results of the fake analysis (`analysis.Rmd`).
+Template for my own containerised reproducible R projects, constructed
+using using `renv`, `make`, and `docker`. Ultimately, only `docker` (and
+optionally `make`) is required to reproduce the results of the fake
+analysis (`analysis.Rmd`).
 
-How to reproduce the analysis?
-------------------------------
+How to reproduce the analysis document?
+---------------------------------------
 
 ### Quick way
 
@@ -26,11 +26,30 @@ Only requires `docker` installed.
 ### Complete way
 
 Only requires `make` and `docker` installed. Takes several minutes for
-packages to install from source into `renv` library (stringi is really
-slow…). The `rproj-template` image is built from scratch (very quick!).
+packages to install from source into `renv` library (`stringi` is really
+slow… :weary:). The `rproj-template` image is built from scratch (very
+quick! :sunglasses:).
 
 1.  Clone this repository
 2.  Run `make all`
+
+**Note: Docker Desktop for Windows users** need to manually edit the
+Makefile and set `current_path` to the current directory and use
+`make all WINDOWS=TRUE`. Hopefully future releases of Docker for Windows
+will not require this workaround.
+
+How do I adapt this template for my own project?
+------------------------------------------------
+
+1.  Clone this repository
+2.  Modify or replace `analysis.Rmd` with your own analysis. Also add
+    any raw data files, R scripts, etc. your analysis relies upon.
+3.  Ensure any output of `analysis.Rmd` will go into a folder called
+    `results/`
+4.  Add the packages your analysis relies on to `install_packages.R`
+5.  If you rename `analysis.Rmd` be sure to replace the name in the
+    `Makefile`
+6.  Run `make all`
 
 How does it work?
 -----------------
@@ -40,11 +59,11 @@ library using a temporary Docker container (with a volume mount). Then a
 Docker image is built into which the `renv` library and the analysis
 (`analysis.Rmd`) are copied, and the `renv` library is initialised. This
 image is completely self-contained and should be archived somewhere
-other than Docker Hub, for example [figshare](https://figshare.com), as
-Docker Hub is not an archive service. Then to reproduce the results of
-the analysis, one simply needs to pull (or rebuild) the image, run a
-container with a host directory mounted, and knit `analysis.Rmd` to
-produce a `results/` folder with the output.
+other than Docker Hub, for example [figshare](https://figshare.com) or
+[Zenodo](https://zenodo.org), as Docker Hub is not an archive service.
+Then to reproduce the results of the analysis, one simply needs to pull
+(or rebuild) the image, run a container with a host directory mounted,
+and knit `analysis.Rmd` to produce a `results/` folder with the output.
 
 This template is based off of Joel Nitta’s
 [docker-renv-example](https://github.com/joelnitta/docker-renv-example)
