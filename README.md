@@ -1,6 +1,13 @@
 rproj-template
 ================
 
+![Docker
+Pulls](https://img.shields.io/docker/pulls/csdaw/rproj-template)
+![Docker Image Size
+(tag)](https://img.shields.io/docker/image-size/csdaw/rproj-template/latest)
+[![dockerfile](https://img.shields.io/badge/dockerfile%20on-github-blue.svg)](https://github.com/csdaw/rproj-template)
+[![base](https://img.shields.io/badge/depends%20on-csdaw%2Frmarkdown--tinytex-blue)](https://hub.docker.com/csdaw/rmarkdown-tinytex "Docker base image")
+
 Template for my own containerised reproducible R projects, constructed
 using using `renv`, `make`, and `docker`. Ultimately, only `docker` (and
 optionally `make`) is required to reproduce the results of the fake
@@ -13,7 +20,9 @@ How to reproduce the analysis document?
 
 Only requires `docker` installed.
 
-1.  Pull the `rproj-template` docker image from here
+1.  Pull the `rproj-template` docker image from
+    [here](https://hub.docker.com/repository/docker/csdaw/rproj-template)
+    with `docker pull csdaw/rproj-template`
 2.  Navigate to the directory you want the `results/` folder to be
 3.  Launch a docker container with the current directory mounted and
     knit `analysis.Rmd`, for example using this command:
