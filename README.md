@@ -29,10 +29,10 @@ Only requires `docker` installed.
 
 <!-- -->
 
-    docker run -dt -v $PWD/results/:/home/analysis/results rproj-template \
+    docker run -dt -v $PWD/results/:/home/analysis/results csdaw/rproj-template \
     Rscript -e 'rmarkdown::render("/home/analysis/analysis.Rmd", output_dir = "results/")'
 
-### Complete way
+### Complete way (recommended)
 
 Only requires `make` and `docker` installed. Takes several minutes for
 packages to install from source into `renv` library (`stringi` is really
@@ -115,6 +115,6 @@ Steps taken to create this template (in case I forget):
     knits `analysis.Rmd` to produces `results/`.
 11. Run `make clean` to remove the container.
 12. Commit the following files and folders:
-    -   renv.lock
-    -   renv/
-    -   results/
+    -   `renv.lock`
+    -   `renv/`
+    -   `results/`
