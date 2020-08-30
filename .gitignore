@@ -1,7 +1,3 @@
-# renv files
-renv.lock
-renv/
-
 # History files
 .Rhistory
 .Rapp.history
